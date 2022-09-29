@@ -1,0 +1,28 @@
+@keyframes pulse {
+	0% {
+		color: indigo;
+	}
+	45% {
+		color: cyan;
+		font-weight: 2000;
+	}
+	100% {
+		color: indigo;
+	}
+}
+
+#app {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	width: 100vw;
+	background: black;
+	p {
+		text-align: center;
+		font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+		font-size: 5rem;
+		animation: pulse 5s infinite;
+	}
+}

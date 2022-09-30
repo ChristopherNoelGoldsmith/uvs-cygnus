@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
 	mode: "development",
-	entry: "./public/index.ts",
+	entry: "./public/index.tsx",
 	output: {
 		//filename: 'main.js',
 		filename: "[name][contenthash].js",
@@ -50,13 +50,17 @@ module.exports = {
 				use: {
 					loader: "babel-loader",
 					options: {
-						presets: ["@babel/preset-env"],
+						presets: ["@babel/preset-env", "@babel/preset-react"],
 					},
 				},
+			},
+			{
+				test: /\.tsx?$/,
+				loader: "babel-loader",
 			},
 		],
 	},
 	resolve: {
-		extensions: [".ts", ".js"],
+		extensions: [".ts", ".js", ".tsx", "jsx"],
 	},
 };

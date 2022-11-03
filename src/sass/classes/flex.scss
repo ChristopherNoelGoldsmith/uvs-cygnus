@@ -1,0 +1,101 @@
+@use "../utilities/gsm.scss";
+
+.row {
+	@include gsm.flex-row;
+}
+
+.column {
+	@include gsm.flex-column;
+}
+
+.flex {
+	display: flex;
+	flex-wrap: wrap;
+}
+.flex.row-xs {
+	@include gsm.xs {
+		@include gsm.flex-row;
+	}
+}
+
+.flex.row-sm {
+	@include gsm.sm {
+		@include gsm.flex-row;
+	}
+}
+
+.flex.row-md {
+	@include gsm.md {
+		@include gsm.flex-row;
+	}
+}
+
+.flex.row-lg {
+	@include gsm.lg {
+		@include gsm.flex-row;
+	}
+}
+
+.flex.row-xl {
+	@include gsm.xl {
+		@include gsm.flex-row;
+	}
+}
+
+.flex.column-xs {
+	@include gsm.xs {
+		@include gsm.flex-column;
+	}
+}
+
+.flex.column-sm {
+	@include gsm.sm {
+		@include gsm.flex-column;
+	}
+}
+
+.flex.column-md {
+	@include gsm.md {
+		@include gsm.flex-column;
+	}
+}
+
+.flex.column-lg {
+	@include gsm.lg {
+		@include gsm.flex-column;
+	}
+}
+
+.flex.column-xl {
+	@include gsm.xl {
+		@include gsm.flex-column;
+	}
+}
+
+.flex.gap-1 {
+	gap: 1rem;
+}
+
+.flex.gap-2 {
+	gap: 2rem;
+}
+
+.flex.gap-3 {
+	gap: 3rem;
+}
+
+.flex.gap-4 {
+	gap: 4rem;
+}
+
+.flex.end {
+	justify-content: flex-end;
+}
+
+.flex.start {
+	justify-content: flex-start;
+}
+
+.flex.space-between {
+	justify-content: space-between;
+}

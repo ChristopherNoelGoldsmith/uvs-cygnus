@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
 	mode: "development",
-	entry: "./public/index.tsx",
+	entry: "./src/index.tsx",
 	output: {
 		//filename: 'main.js',
 		filename: "[name][contenthash].js",

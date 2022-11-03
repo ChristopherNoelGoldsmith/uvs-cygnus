@@ -1,0 +1,38 @@
+.card {
+	border-radius: 5px;
+}
+
+.card.white {
+	background: white;
+	color: black;
+}
+
+.card.black {
+	background: rgba($color: black, $alpha: 0.85);
+	color: ivory;
+}
+
+.card.darkgrey {
+	background: rgba($color: darkgrey, $alpha: 0.5);
+}
+
+.card.chocolate {
+	background: rgba($color: chocolate, $alpha: 0.5);
+	color: ivory;
+}
+
+.card.white.bordered {
+	border: 1px black solid;
+}
+
+.card.black.bordered {
+	border: 1px white solid;
+}
+
+.card.shadow {
+	box-shadow: 3px 5px 5px 3px rgba($color: black, $alpha: 0.75);
+}
+
+.opacity-half {
+	opacity: 0.5;
+}

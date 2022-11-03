@@ -13,16 +13,24 @@
 
 #root {
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
 	width: 100vw;
 	background: black;
 	p {
 		text-align: center;
-		font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-		font-size: 5rem;
+		font-size: 1rem;
+		color: white;
 		animation: pulse 5s infinite;
 	}
+}
+
+::-webkit-scrollbar {
+	height: 5px;
+	width: 5px;
+	background: rgba($color: grey, $alpha: 0.7);
+}
+
+::-webkit-scrollbar-thumb {
+	background: white;
+	border: 1px solid black;
+	border-radius: 10px;
 }

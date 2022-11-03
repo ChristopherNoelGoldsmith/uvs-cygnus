@@ -1,0 +1,23 @@
+@mixin fonts($size: 1rem, $color: black, $align: center, $decor: none) {
+	font-size: 1rem * $size;
+	color: $color;
+	text-align: $align;
+	text-decoration: $decor;
+}
+
+@mixin font-styles($weight: 300, $shadow: false, $spacing: normal) {
+	@if ($shadow == true) {
+		text-shadow: 2px 2px rgba($color: black, $alpha: 0.7);
+	}
+	font-weight: $weight;
+	letter-spacing: $spacing;
+}
+
+@mixin font-neon($color: $fff, $neon: #0fa, $border: false) {
+	color: $color;
+	@if ($border == true) {
+		text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	}
+	text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px $neon,
+		0 0 82px $neon, 0 0 92px $neon, 0 0 102px $neon, 0 0 151px $neon;
+}

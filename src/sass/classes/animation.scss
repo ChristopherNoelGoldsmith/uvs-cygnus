@@ -1,0 +1,44 @@
+@use "../utilities/gsm.scss";
+
+.ani-fade-in {
+	@include gsm.ani(fade-in);
+}
+
+.ani-fade-out {
+	@include gsm.ani(fade-out);
+}
+
+.ani-fade-in-1s {
+	@include gsm.ani(fade-in, 1s);
+}
+
+.ani-fade-out-1s {
+	@include gsm.ani(fade-out, 1s);
+}
+
+.ani-fade-in-2s {
+	@include gsm.ani(fade-in, 2s);
+}
+
+.ani-fade-out-2s {
+	@include gsm.ani(fade-out, 3s);
+}
+
+.ani-fade-in-3s {
+	@include gsm.ani(fade-in, 3s);
+}
+
+.ani-fade-out-3s {
+	@include gsm.ani(fade-out, 3s);
+}
+
+.ani-fade-in-4s {
+	@include gsm.ani(fade-in, 4s);
+}
+
+.ani-fade-out-4s {
+	@include gsm.ani(fade-out, 4s);
+}
+
+.ani-fade-in-text {
+}

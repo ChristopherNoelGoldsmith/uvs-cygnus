@@ -1,0 +1,51 @@
+.font.f-bordered-white {
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: white;
+}
+
+.font.f-bold {
+	font-weight: bold;
+}
+
+.font.f-shadow-darkgrey {
+	text-shadow: 2px 2px darkgrey;
+}
+
+.font.f-shadow-black {
+	text-shadow: 2px 2px rgba($color: #000000, $alpha: 0.9);
+}
+
+.title-font {
+	letter-spacing: 1.5rem;
+	font-size: 2rem;
+	text-shadow: 1px 1px darkgrey;
+}
+
+.title-font.x2 {
+	font-size: 4rem;
+}
+
+.bold {
+	font-weight: 600;
+	font-size: 1.1rem;
+}
+
+.font.f-left {
+	text-align: left;
+}
+
+.font.f-right {
+	text-align: right;
+}
+
+.font.f-size-1 {
+	font-size: 1rem;
+}
+
+.font.f-size-2 {
+	font-size: 2rem;
+}
+
+.font.f-color-black {
+	color: black;
+}

@@ -1,0 +1,84 @@
+@use "./utilities/gsm.scss";
+@forward "./classes/flex.scss";
+@forward "./classes/arrows.scss";
+@forward "./classes/card.scss";
+@forward "./classes/backgrounds.scss";
+@forward "./classes/animation.scss";
+@forward "./classes/fonts.scss";
+@forward "./classes/positions.scss";
+@forward "./classes/buttons.scss";
+@forward "./classes/size.scss";
+
+.fill {
+	width: 100%;
+	height: 100%;
+}
+
+.fill-x {
+	width: 100%;
+}
+
+.fill-y {
+	height: 100%;
+}
+
+.pad1 {
+	padding: 0.5rem;
+}
+
+.pad2 {
+	padding: 1rem;
+}
+
+.pad3 {
+	padding: 2rem;
+}
+
+.pad4 {
+	padding: 3rem;
+}
+
+.selected {
+	position: relative;
+	border: 2px cyan solid;
+}
+
+.selected::after {
+	content: "";
+	position: absolute;
+	background: rgba($color: cyan, $alpha: 0.25);
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.underline-solid {
+	border-bottom: 1px solid;
+}
+
+.underline-dotted {
+	border-bottom: 1px dotted;
+}
+
+.pulse {
+	@include gsm.ani(pulse);
+}
+
+.font-size-1 {
+	font-size: 1.15rem;
+	letter-spacing: 0.095rem;
+}
+
+.tx-no-stock {
+	color: darkblue;
+	font-weight: 750;
+}
+
+.navbar.fixed-top {
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding: 5px;
+	width: 100%;
+}

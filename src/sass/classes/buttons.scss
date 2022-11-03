@@ -1,0 +1,32 @@
+.btn {
+	font-size: 1.2rem;
+	padding: 0.5rem 1rem;
+	border-radius: 5px;
+	border: none;
+}
+
+.btn.b-hover-grey:hover {
+	cursor: pointer;
+	background: rgba($color: grey, $alpha: 0.3);
+}
+
+.btn.b-hover-swipe {
+	position: relative;
+	cursor: pointer;
+	background: rgba($color: grey, $alpha: 0.3);
+}
+
+.btn.b-hover-swipe::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	background: cyan;
+	height: 100%;
+	width: 0%;
+	opacity: 0.3;
+	transition: all 1.2s;
+}
+
+.btn.b-hover-swipe:hover::after {
+	width: 100%;
+}

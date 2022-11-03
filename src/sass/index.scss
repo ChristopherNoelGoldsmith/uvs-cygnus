@@ -1,0 +1,12 @@
+* {
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	list-style: none;
+	text-decoration: none;
+	transition: all 0.4s ease;
+	//!development only//
+	//	border: 1px white solid; //dom creation test only
+	overflow-x: hidden;
+}

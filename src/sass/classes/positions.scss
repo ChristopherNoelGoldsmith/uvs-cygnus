@@ -1,0 +1,46 @@
+.relative {
+	position: relative;
+}
+
+.absolute {
+	position: absolute;
+}
+
+.overflow-none {
+	overflow: hidden;
+}
+
+.fixed-top-right {
+	position: fixed;
+	top: 0;
+	right: 0;
+}
+
+.fixed-top-left {
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+.absolute-top-left {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.layer-default {
+	z-index: 0;
+}
+
+.layer-back {
+	z-index: -1;
+}
+
+.layer-front {
+	z-index: 1;
+}
+
+.top-left {
+	top: 0;
+	left: 0;
+}

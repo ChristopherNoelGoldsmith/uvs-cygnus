@@ -99,3 +99,11 @@
 .flex.space-between {
 	justify-content: space-between;
 }
+
+.flex.self-start {
+	justify-self: start;
+}
+
+.flex.self-end {
+	justify-self: end;
+}

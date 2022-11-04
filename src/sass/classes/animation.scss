@@ -42,3 +42,11 @@
 
 .ani-fade-in-text {
 }
+
+.hover-appear {
+	opacity: 0;
+}
+
+.hover-appear:hover {
+	opacity: 1;
+}

@@ -14,12 +14,20 @@ import React, { useState } from "react";
 interface ExpandableMenuProps {
 	children: React.ReactNode;
 	name: string;
+	height: number;
+	default?: "open" | "closed";
 	id?: string;
 	className?: string[];
 }
 
 const ExpandableMenu: React.FC<ExpandableMenuProps> = (props) => {
-	const [expansion, setExpansion] = useState<boolean>(false);
+	const [expansion, setExpansion] = useState<boolean>(() => {
+		if (props.default === "closed" || props.default === undefined) {
+			return false;
+		} else {
+			return true;
+		}
+	});
 
 	const menuExpansionHandler = (): void => {
 		// USE ) Intended to handle the dropdown toggle of the menu.
@@ -34,9 +42,21 @@ const ExpandableMenu: React.FC<ExpandableMenuProps> = (props) => {
 				props.className && props.className.join(" ")
 			}`}
 		>
-			<label onClick={menuExpansionHandler}>{props.name}</label>
+			<button
+				className={`expandable-text-title fill-x relative ${
+					props.className ? props.className : " bg-color-white"
+				}`}
+				onClick={menuExpansionHandler}
+				type="button"
+			>
+				<div className="absolute-top-left fill bg-horz-grad-grey bg-translucent"></div>
+				<h4 className="">{props.name}</h4>
+			</button>
 
-			<div className={`expandable-menu ${expansion ? "max" : "min"}`}>
+			<div
+				style={{ height: `${expansion ? props.height + "px" : "0px"}` }}
+				className={`expandable-menu`}
+			>
 				{props.children}
 			</div>
 		</section>

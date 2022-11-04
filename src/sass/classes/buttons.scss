@@ -13,14 +13,14 @@
 .btn.b-hover-swipe {
 	position: relative;
 	cursor: pointer;
-	background: rgba($color: grey, $alpha: 0.3);
 }
 
 .btn.b-hover-swipe::after {
 	content: "";
 	position: absolute;
 	left: 0;
-	background: cyan;
+	top: 0;
+	background: white;
 	height: 100%;
 	width: 0%;
 	opacity: 0.3;

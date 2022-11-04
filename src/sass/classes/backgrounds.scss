@@ -4,49 +4,57 @@
 	height: 400px;
 }
 
-.bg.bg-color-black {
+.bg-color-black {
 	background: black;
 }
 
-.bg.bg-color-white {
+.bg-color-white {
 	background: white;
 }
 
-.bg.bg-color-red {
+.bg-color-red {
 	background: red;
 }
 
-.bg.bg-color-blue {
+.bg-color-blue {
 	background: blue;
 }
 
-.bg.bg-color-green {
+.bg-color-green {
 	background: green;
 }
-.bg.bg-translucent {
+.bg-translucent {
 	opacity: 0.7;
 }
 
-.bg.bg-grad-black {
+.bg-very-translucent {
+	opacity: 0.4;
+}
+
+.bg-grad-black {
 	@include gsm.horizontal-gradient(black);
 	@include gsm.md {
 		@include gsm.vertical-gradient(black);
 	}
 }
 
-.bg.bg-horz-grad-black {
+.bg-horz-grad-black {
 	@include gsm.horizontal-gradient(black);
 }
 
-.bg.bg-grad-grey {
+.bg-grad-grey {
 	@include gsm.vertical-gradient(slategrey);
 }
 
-.bg.bg-overlay-white {
+.bg-horz-grad-grey {
+	@include gsm.horizontal-gradient(slategrey);
+}
+
+.bg-overlay-white {
 	position: relative;
 }
 
-.bg.bg-overlay-white {
+.bg-overlay-white {
 	content: "";
 	z-index: 1;
 	position: absolute;
@@ -57,7 +65,7 @@
 	background: rgba($color: white, $alpha: 0.5);
 }
 
-.bg.bg-gradient-black {
+.bg-gradient-black {
 	@include gsm.md {
 		background: linear-gradient(
 			274deg,

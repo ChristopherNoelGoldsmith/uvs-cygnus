@@ -10,6 +10,9 @@
 	overflow: hidden;
 }
 
+.overflow-vis {
+	overflow: visible;
+}
 .fixed-top-right {
 	position: fixed;
 	top: 0;
@@ -38,6 +41,10 @@
 
 .layer-front {
 	z-index: 1;
+}
+
+.layer-top {
+	z-index: 10;
 }
 
 .top-left {

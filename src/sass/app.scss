@@ -15,11 +15,8 @@
 	display: flex;
 	width: 100vw;
 	background: black;
-	p {
-		text-align: center;
-		font-size: 1rem;
-		color: white;
-		animation: pulse 5s infinite;
+	main {
+		min-height: 100vh;
 	}
 }
 

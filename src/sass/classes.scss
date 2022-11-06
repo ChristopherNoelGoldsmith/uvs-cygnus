@@ -9,6 +9,10 @@
 @forward "./classes/buttons.scss";
 @forward "./classes/size.scss";
 
+.hidden {
+	display: none;
+}
+
 .fill {
 	width: 100%;
 	height: 100%;

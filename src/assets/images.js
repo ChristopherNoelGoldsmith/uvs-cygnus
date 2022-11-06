@@ -12,5 +12,6 @@ export const DUMMY_DATA = {
 			Handsize: 6,
 			Vitality: 31,
 		},
+		tags: [],
 	},
 };

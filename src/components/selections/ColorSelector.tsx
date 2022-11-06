@@ -3,7 +3,7 @@ import ExpandableMenu from "../UI/ExpandableMenu";
 
 const ColorSelector: React.FC = () => {
 	return (
-		<ExpandableMenu id="details-color" name="Details Color" height={350}>
+		<ExpandableMenu id="details-color" name="Details Color" height={"auto"}>
 			<ul>
 				<li>
 					<label htmlFor="">Air</label>

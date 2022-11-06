@@ -1,18 +1,33 @@
-const babel = require("babel");
+//NODE PACKAGES
 const express = require("express");
-const dotenv = require("dotenv").config();
+const dotenv = require("dotenv");
 const path = require("path");
 const app = express();
-const { MODE, PORT } = process.env;
-const rootDir = "../dist";
+///////////////////////////////////////////////////
+//IMPORTS
+import staticRoutes from "./routes/staticRoutes";
+/* 
+///////////////////////////////////////////////////
+ENVIRONMENT CONFIGURATION
 
-const staticMiddleware: any = express.static(path.join(__dirname, rootDir));
+?@PORT - Default port for the api
+?@MODE - Determines weather it is in dev or production mode
+*/
+dotenv.config({ path: `${__dirname}/config.env` });
+const { ROOT } = process.env;
+///////////////////////////////////////////////////
+/* 
+///////////////////////////////////////////////////
+MIDDLEWARE
+*/
+const staticMiddleware: string = express.static(path.join(__dirname, ROOT));
 app.use(staticMiddleware);
+///////////////////////////////////////////////////
+/*
+///////////////////////////////////////////////////
+Initiating routes
+*/
+app.use(staticRoutes);
 
-app.get("/", (req: any, res: any) => {
-	res.sendFile(path.join(__dirname, rootDir, "index.html"));
-});
-
-app.listen(PORT, () => {
-	console.log(`Server is listening at ${PORT}`);
-});
+///////////////////////////////////////////////////
+export default app;

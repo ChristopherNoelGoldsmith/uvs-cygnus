@@ -14,7 +14,8 @@ import React, { useState } from "react";
 interface ExpandableMenuProps {
 	children: React.ReactNode;
 	name: string;
-	height: number;
+	height: string;
+	width?: string;
 	default?: "open" | "closed";
 	id?: string;
 	className?: string[];
@@ -54,7 +55,7 @@ const ExpandableMenu: React.FC<ExpandableMenuProps> = (props) => {
 			</button>
 
 			<div
-				style={{ height: `${expansion ? props.height + "px" : "0px"}` }}
+				style={{ height: `${expansion ? props.height : "0px"}` }}
 				className={`expandable-menu`}
 			>
 				{props.children}

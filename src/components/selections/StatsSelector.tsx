@@ -6,7 +6,7 @@ const StatsSelector: React.FC = () => {
 		<ExpandableMenu
 			id={"details-stats"}
 			name={"Stats"}
-			height={250}
+			height={"auto"}
 			default="open"
 		>
 			<ul>

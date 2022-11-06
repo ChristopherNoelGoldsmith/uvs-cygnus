@@ -1,9 +1,10 @@
 import express from "express";
 import path from "path";
+import ENV_VARIABLES from "../utilities/envVars";
 const router = express.Router();
-//?@staticMiddleware: Determines the path of the static page
+const { ROOT } = ENV_VARIABLES;
 
-const { ROOT } = process.env;
+//?@staticMiddleware: Determines the path of the static page
 
 router.route("/").get((req: Request, res: any) => {
 	res.sendFile(path.join(__dirname, ROOT!, "index.html"));

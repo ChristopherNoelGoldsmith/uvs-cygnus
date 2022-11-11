@@ -44,7 +44,7 @@ app.use(bodyParser.json());
 Initiating routes
 */
 app.use(staticRoutes);
-app.use(itemsRoutes);
+app.use("/api/v1/items", itemsRoutes);
 
 ///////////////////////////////////////////////////
 export default app;

@@ -1,10 +1,17 @@
 import express from "express";
 import ENV_VARIABLES from "../utilities/envVars";
-import { getAllItems, createItem } from "../controllers/itemsController";
+import {
+	getItemsByParam,
+	getAllItems,
+	createItem,
+	getItem,
+	deleteItemById,
+} from "../controllers/itemsController";
 
 const router = express.Router();
-const { MOUNT } = ENV_VARIABLES;
 
-router.route(`${MOUNT}items`).get(getAllItems).post(createItem);
+router.route(`/find`).get(getItemsByParam);
+router.route(`/`).get(getAllItems).post(createItem);
+router.route(`/find/:id`).get(getItem).delete(deleteItemById);
 
 export default router;

@@ -1,5 +1,8 @@
 import "./Navbar.scss";
-import React, { useState } from "react";
+//HOOKS
+import React, { ChangeEvent, useState } from "react";
+import useInput from "../hooks/useInput";
+//COMPONENTS
 import TypesSelector from "../selections/TypesSelector";
 import ProductSelector from "../selections/ProductSelector";
 import ColorSelector from "../selections/ColorSelector";
@@ -7,6 +10,7 @@ import StatsSelector from "../selections/StatsSelector";
 
 const Navbar: React.FC = () => {
 	const [advVis, setAdvVis] = useState<boolean>(true);
+	const { inputHandler, inputState } = useInput({ name: "" });
 
 	const advVisHandler = (event: React.MouseEvent, boo?: boolean): void => {
 		if (boo === true) setAdvVis(true);
@@ -16,6 +20,11 @@ const Navbar: React.FC = () => {
 			setAdvVis((vis) => !vis);
 		}
 	};
+
+	const navbarInputHandler = (event: any): void => {
+		inputHandler({ name: event.target.value });
+	};
+
 	return (
 		<nav className="flex column fixed-top-left fill-x bg bg-color-white layer-top">
 			<section id="nav-main" className="flex row">
@@ -28,7 +37,12 @@ const Navbar: React.FC = () => {
 				<section className="flex row">
 					<form className="flex row" action="">
 						<section id="main-info">
-							<input type="text" placeholder="Name" />
+							<input
+								type="text"
+								placeholder="Name"
+								value={inputState.navbar}
+								onChange={navbarInputHandler}
+							/>
 							<input type="text" placeholder="Text" />
 						</section>
 						<button type="submit">Search</button>

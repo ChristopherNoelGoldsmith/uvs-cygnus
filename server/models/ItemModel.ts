@@ -59,7 +59,7 @@ const ItemsSchema: Schema = new Schema(
 ///////////////////////////////////////////////////////////////////////////
 	Finding items in database using query params
 
-	TODO: allow this function to work with multiple perameters
+	TODO: allow this function to work with multiple parameters
 
 	TODO: create if statements to drill into objects "ex - stats{damage: 5, speed: 4};""
 */

@@ -3,6 +3,7 @@ SUMMARY )
 This is the schema used to design the items written to the database
 */
 import AppError from "../utilities/appError";
+import { convertParametersToRegExp } from "./ItemModelsUtils/PopulateFilterObject";
 import mongoose, { Schema } from "mongoose";
 import { ItemsDocument, ItemsModel, ItemStats } from "./ItemModelInterfaces";
 //TODO: create a presave function that parses text and creates tags with regExp
@@ -64,27 +65,10 @@ const ItemsSchema: Schema = new Schema(
 	TODO: create if statements to drill into objects "ex - stats{damage: 5, speed: 4};""
 */
 
-			findItemByParam(param: string, value: string | number) {
-				let filterObject;
-				if (typeof value === "string") {
-					const regExp = new RegExp(value, "i");
-					filterObject = { [param]: regExp };
-				}
-
-				if (typeof value === "number") {
-					filterObject = { [param]: value };
-				}
-
-				// Error Handling ) Ensures the filterObejct has a value
-
-				if (!filterObject) {
-					return new AppError({
-						statusCode: 500,
-						message: "An error has occoured with the filter obejct!",
-					});
-				}
-
-				return mongoose.model("ItemsSchema").find(filterObject);
+			findItemByParam(parameters) {
+				const filterObject = convertParametersToRegExp(parameters);
+				console.log(filterObject, "sweet");
+				return mongoose.model("ItemsSchema").find(filterObject!);
 			},
 		},
 	}

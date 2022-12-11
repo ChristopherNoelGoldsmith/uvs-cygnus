@@ -30,21 +30,18 @@ export const getItem = catchAsyncFunction(async (req: any, res: any) => {
 ///////////////////////////////////////////////////////////////////////////
 Finding items in database using query params
 
-
-TODO: create if statements to drill into objects "ex - stats{damage: 5, speed: 4};""
 */
 export const getItemsByParam = catchAsyncFunction(
 	async (req: any, res: any) => {
 		// Query 1 ) Deconstruct the query params and state variables
-		const value: string | number = req.query.value;
-		const par: string = req.query.par;
+		const parameters: string = req.query;
+		console.log(parameters);
 		// Error Handling ) Check that the params are valid
-		if (!par || !value) {
+		if (!parameters) {
 			return new AppError({ statusCode: 400, message: "Item not found" });
 		}
-
 		// Query 2 ) Query the server
-		const data = await Items.findItemByParam(par, value);
+		const data = await Items.findItemByParam(parameters);
 
 		// Resolution
 		res.status(200).json({ data, messege: "SUCCESS" });

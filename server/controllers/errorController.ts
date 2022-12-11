@@ -1,10 +1,16 @@
 import AppError from "../utilities/appError";
 
 const handleJWTError = (err: any) => {
-	return new AppError("Invalid token, please log in again", 401);
+	return new AppError({
+		message: "Invalid token, please log in again",
+		statusCode: 401,
+	});
 };
 const handleExpiredTokenError = (err: any) => {
-	return new AppError("Session has expired, please log in again!", 401);
+	return new AppError({
+		message: "Session has expired, please log in again!",
+		statusCode: 401,
+	});
 };
 
 const errDev = (res: any, err: any) => {
@@ -33,8 +39,7 @@ module.exports = (err: any, req: any, res: any, next: any) => {
 	if (process.env.NODE_ENV === "development") {
 		return errDev(res, err);
 	}
-	if (error.name === "JsonWebTokenError") error = handleJWTError(error);
-	if (error.name === "TokenExpiredError")
-		error = handleExpiredTokenError(error);
+	if (err.name === "JsonWebTokenError") err = handleJWTError(err);
+	if (err.name === "TokenExpiredError") err = handleExpiredTokenError(err);
 	return errProduction(res, err);
 };

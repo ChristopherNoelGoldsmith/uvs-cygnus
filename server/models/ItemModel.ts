@@ -37,9 +37,6 @@ export const BaseSchema = (collection: string, stats: Object = {}): Schema => {
 				type: String,
 				required: [true, "State the game this item belongs to."],
 			},
-			subType: {
-				type: String,
-			},
 			image: {
 				type: String,
 			},

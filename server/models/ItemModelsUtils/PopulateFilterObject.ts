@@ -69,19 +69,17 @@ const convertValuesToRegExp = (
 
 	// regExp conversion function
 	const objectWithRegExpValues = filterAndConvertToRegExp(key, parameters[key]);
-
 	//Combines the current filter object with the object created from @objectWithRegExValues
 	filter = { ...filter, ...objectWithRegExpValues };
 
 	//reccurs function and set the value of filter for it to be returned by the reccursion
-	filter = convertValuesToRegExp(counter, filter);
+	filter = convertValuesToRegExp(counter, parameters, filter);
 
 	return filter;
 };
 
 export const convertParametersToRegExp = (parameters: any) => {
 	const paramKeys: string[] = Object.keys(parameters);
-
 	if (paramKeys.length === 1)
 		return filterAndConvertToRegExp(paramKeys[0], parameters[paramKeys[0]]);
 

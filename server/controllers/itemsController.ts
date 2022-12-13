@@ -1,10 +1,10 @@
 import catchAsyncFunction from "../utilities/catchAsync";
 import Items from "../models/ItemModel";
 import AppError from "../utilities/appError";
-import UniversusSchema from "../models/UniversusSchema/UniversusSchema";
+import UniversusModel from "../models/UniversusModel/UniversusModel";
 
 export const getAllItems = catchAsyncFunction(async (req: any, res: any) => {
-	const data = await UniversusSchema.find();
+	const data = await UniversusModel.find();
 	res.status(200).json({ data, message: "SUCCESS" });
 });
 
@@ -20,7 +20,7 @@ export const getItem = catchAsyncFunction(async (req: any, res: any) => {
 	if (!id) new AppError({ statusCode: 400, message: "Item not found" });
 
 	//Query 2 ) Query the database using the id
-	const data = await UniversusSchema.findOne({ id });
+	const data = await UniversusModel.findOne({ id });
 
 	// Resolution
 	res.status(200).json({ data, messege: "SUCCESS" });
@@ -50,7 +50,7 @@ export const getItemsByParam = catchAsyncFunction(
 
 export const createItem = catchAsyncFunction(async (req: any, res: any) => {
 	//Item creation 1 ) Writing it to the database and runing the schema
-	const item = await UniversusSchema.create(req.body);
+	const item = await UniversusModel.create(req.body);
 
 	//Error handling 1 ) Check if the write was a success
 	if (!item) {
@@ -69,7 +69,7 @@ export const createItem = catchAsyncFunction(async (req: any, res: any) => {
 
 export const deleteItemById = catchAsyncFunction(async (req: any, res: any) => {
 	const { id } = req.params;
-	const deletion = await UniversusSchema.findByIdAndDelete({ _id: id });
+	const deletion = await UniversusModel.findByIdAndDelete({ _id: id });
 
 	if (!deletion || deletion === null) {
 		console.log("poop");

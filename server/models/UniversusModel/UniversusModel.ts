@@ -1,6 +1,6 @@
 import { BaseSchema } from "../ItemModel";
-import { ItemsDocument, ItemsModel } from "../ItemModelInterfaces";
-import { universusMiddlewareInit } from "./universusMiddleware";
+import { ItemsDocument, ItemsModelInterface } from "../ItemModelInterfaces";
+import universusMiddlewareInit from "./universusMiddleware";
 import mongoose from "mongoose";
 
 const stats = {
@@ -44,13 +44,21 @@ const stats = {
 	},
 };
 
-export const UniversusModel = BaseSchema("universus", stats);
+/*
+Schema initiation and middleware initiation
+*/
+export const UniversusModel = BaseSchema("UniversusModel", "universus", stats);
 
 universusMiddlewareInit();
 
-const model = mongoose.model<ItemsDocument, ItemsModel>(
+const model = mongoose.model<ItemsDocument, ItemsModelInterface>(
 	"UniversusModel",
 	UniversusModel
 );
 
-export default model;
+const models = {
+	model: model,
+	findItemByParam: UniversusModel.methods.findItemByParam,
+};
+
+export default models;

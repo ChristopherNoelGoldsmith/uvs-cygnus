@@ -17,11 +17,12 @@ export interface ItemsDocument extends Document {
 	tags?: string[];
 }
 
-export interface ItemsModel extends Model<ItemsDocument> {
+// interface FindItemByParamInterface {
+// 	[key: string]: string | string[] | RegExp | RegExp[];
+// }
+
+export interface ItemsModelInterface extends Model<ItemsDocument> {
 	methods: {
-		findItemByParam(
-			param: string,
-			value: string | number
-		): Promise<ItemsDocument>;
+		findItemByParam(parameters: string): Promise<ItemsDocument>;
 	};
 }

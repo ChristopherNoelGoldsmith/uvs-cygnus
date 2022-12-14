@@ -4,12 +4,16 @@ This is the schema used to design the items written to the database
 */
 import { convertParametersToRegExp } from "./ItemModelsUtils/PopulateFilterObject";
 import mongoose, { Schema } from "mongoose";
-import { ItemsDocument, ItemsModel, ItemStats } from "./ItemModelInterfaces";
+import { ItemsDocument, ItemsModelInterface } from "./ItemModelInterfaces";
 //TODO: create a presave function that parses text and creates tags with regExp
 //? @keywords: used for things like "powerful in ufs" or "flying" in mtg
 
-export const BaseSchema = (collection: string, stats: Object = {}): Schema => {
-	const ItemsSchema: Schema = new Schema(
+export const BaseSchema = (
+	schemaName: string,
+	collection: string,
+	stats: Object = {}
+): Schema => {
+	return new Schema(
 		{
 			name: {
 				type: String,
@@ -58,28 +62,29 @@ export const BaseSchema = (collection: string, stats: Object = {}): Schema => {
 		TODO: create if statements to drill into objects "ex - stats{damage: 5, speed: 4};""
 	*/
 
-				findItemByParam(parameters) {
+				findItemByParam(parameters: any) {
+					//! A Workaround to remove a conflict with the search function
+					if (parameters.category) delete parameters.category;
 					const filterObject = convertParametersToRegExp(parameters);
 					///////////////////////////////////
 					console.log(filterObject, "sweet");
 					///////////////////////////////////
-					return mongoose.model("ItemsSchema").find(filterObject!);
+					return mongoose.model(schemaName).find(filterObject!);
 				},
 			},
 		}
 	);
-	return ItemsSchema;
 };
 
-const ItemsSchema = BaseSchema("items");
+const ItemsModel = BaseSchema("ItemsModel", "items");
 
-const model: ItemsModel = mongoose.model<ItemsDocument, ItemsModel>(
-	"ItemsSchema",
-	ItemsSchema
-);
+const model: ItemsModelInterface = mongoose.model<
+	ItemsDocument,
+	ItemsModelInterface
+>("ItemsModel", ItemsModel);
 
 const models = {
-	ItemsSchema: model,
-	findItemByParam: ItemsSchema.methods.findItemByParam,
+	model,
+	findItemByParam: ItemsModel.methods.findItemByParam,
 };
 export default models;

@@ -1,15 +1,11 @@
 import { UniversusModel } from "./UniversusModel";
+import ItemsModel from "../ItemModel";
 import { checkZone } from "./checkZone";
 import AppError from "../../utilities/appError";
 
-export const universusMiddlewareInit = () => {
-	checkForProperZonesOnCards();
-	ensureValuesHaveRequiredPairs();
-};
-
 const checkForProperZonesOnCards = () => {
-	return UniversusModel.pre("save", function (next) {
-		const ensureProperZoneValues = (zone: string) => {
+	return UniversusModel.pre("save", function (next): void {
+		const ensureProperZoneValues = (zone: string): void => {
 			if (zone) {
 				if (!checkZone(zone)) {
 					throw new AppError({
@@ -27,7 +23,7 @@ const checkForProperZonesOnCards = () => {
 	});
 };
 const ensureValuesHaveRequiredPairs = () => {
-	return UniversusModel.pre("save", function (next) {
+	return UniversusModel.pre("save", function (next): void {
 		if (
 			(this.blockMod && !this.blockZone) ||
 			(!this.blockMod && this.blockZone) ||
@@ -42,3 +38,26 @@ const ensureValuesHaveRequiredPairs = () => {
 		next();
 	});
 };
+
+//TODO: Change to value
+const checkForDuplicateName = () => {
+	return UniversusModel.pre("validate", async function (next) {
+		const checkIfNameTaken = await ItemsModel.findItemByParam({
+			name: this.name,
+		});
+		if (checkIfNameTaken.length !== 0) {
+			throw new AppError({
+				statusCode: 400,
+				message: "This name is already taken!",
+			});
+		}
+		next();
+	});
+};
+
+const universusMiddlewareInit = () => {
+	checkForProperZonesOnCards();
+	ensureValuesHaveRequiredPairs();
+	checkForDuplicateName();
+};
+export default universusMiddlewareInit;

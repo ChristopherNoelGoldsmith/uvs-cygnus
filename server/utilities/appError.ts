@@ -11,6 +11,7 @@ class AppError extends Error {
 	isOperational: boolean;
 
 	constructor(err: ErrorMessage) {
+		console.log(err);
 		super(err.message);
 		this.message = err.message;
 		/*
@@ -19,7 +20,6 @@ class AppError extends Error {
         */
 		this.statusCode = `${err.statusCode}`.startsWith("4") ? "FAIL" : "ERROR";
 		this.isOperational = true;
-
 		//Error.captureStackTrace(this, this.constructor);
 	}
 }

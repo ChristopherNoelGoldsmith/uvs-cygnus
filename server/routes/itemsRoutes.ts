@@ -6,12 +6,13 @@ import {
 	createItem,
 	getItem,
 	deleteItemById,
+	patchItem,
 } from "../controllers/itemsController";
 
 const router = express.Router();
 
 router.route(`/find`).get(getItemsByParam);
 router.route(`/`).get(getAllItems).post(createItem);
-router.route(`/find/:id`).get(getItem).delete(deleteItemById);
+router.route(`/find/:id`).get(getItem).patch(patchItem).delete(deleteItemById);
 
 export default router;

@@ -1,16 +1,18 @@
 import "./Navbar.scss";
 //HOOKS
-import React, { ChangeEvent, useState } from "react";
+import React, { useState } from "react";
 import useInput from "../hooks/useInput";
 //COMPONENTS
 import TypesSelector from "../selections/TypesSelector";
 import ProductSelector from "../selections/ProductSelector";
 import ColorSelector from "../selections/ColorSelector";
 import StatsSelector from "../selections/StatsSelector";
+import useQuery from "../hooks/useQuery";
 
 const Navbar: React.FC = () => {
 	const [advVis, setAdvVis] = useState<boolean>(true);
 	const { inputHandler, inputState } = useInput({ name: "" });
+	const queryApi = useQuery();
 
 	const advVisHandler = (event: React.MouseEvent, boo?: boolean): void => {
 		if (boo === true) setAdvVis(true);
@@ -25,6 +27,15 @@ const Navbar: React.FC = () => {
 		inputHandler({ name: event.target.value });
 	};
 
+	const querySearchHandler = async (event: any) => {
+		event.preventDefault();
+		const query = await queryApi("find", {
+			category: "universus",
+			name: inputState.name,
+		});
+		console.log(query);
+	};
+
 	return (
 		<nav className="flex column fixed-top-left fill-x bg bg-color-white layer-top">
 			<section id="nav-main" className="flex row">
@@ -35,12 +46,12 @@ const Navbar: React.FC = () => {
 					<li>Decks</li>
 				</ul>
 				<section className="flex row">
-					<form className="flex row" action="">
+					<form className="flex row" onSubmit={querySearchHandler}>
 						<section id="main-info">
 							<input
 								type="text"
 								placeholder="Name"
-								value={inputState.navbar}
+								value={inputState.name}
 								onChange={navbarInputHandler}
 							/>
 							<input type="text" placeholder="Text" />

@@ -12,9 +12,11 @@ const BaseDeckSchema = (collection: string, cardModel: string) => {
 				ref: cardModel,
 				required: true,
 			},
-			dateCreated: { type: Date },
-			lastEdited: { type: Date },
+			dateCreated: { type: Number },
+			lastEdited: { type: Number },
 			private: { type: Boolean, default: false },
+			views: Number,
+			likes: Number,
 		},
 		{
 			collection: collection,
@@ -25,7 +27,12 @@ const BaseDeckSchema = (collection: string, cardModel: string) => {
 const BaseDecks = BaseDeckSchema("userDecks", "UniversusModel");
 
 BaseDecks.pre("save", function async(next) {
-	this.dateCreated = new Date();
+	this.dateCreated = Date.now();
+	next();
+});
+
+BaseDecks.pre(/update/i, function async(next) {
+	this.lastEdited = Date.now();
 	next();
 });
 

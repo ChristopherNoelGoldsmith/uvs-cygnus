@@ -12,7 +12,6 @@ import itemsRoutes from "./routes/itemsRoutes";
 import decksRoutes from "./routes/decksRoutes";
 /* 
 ///////////////////////////////////////////////////
-
 ENVIRONMENT CONFIGURATION
 
 ?@PORT - Default port for the api
@@ -22,6 +21,13 @@ const { ROOT, DATABASE, URI_PASSWORD } = ENV_VARIABLES;
 console.log(ROOT); //////////////////////////////////////////////////
 // --Used to connect mongoose to the NoSQL database--
 const URI: string = DATABASE!.replace("%PASSWORD%", URI_PASSWORD!);
+
+if (ENV_VARIABLES.STATUS === "dev") {
+	app.use((req: any, res: any, next: any) => {
+		res.header("Access-Control-Allow-Origin", "*");
+		next();
+	});
+}
 
 const mongooseConnectionOptions = {};
 

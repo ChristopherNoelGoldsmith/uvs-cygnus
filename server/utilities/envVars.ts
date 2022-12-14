@@ -1,9 +1,10 @@
 import dotenv from "dotenv";
 
 dotenv.config({ path: `${__dirname}/../config.env` });
-const { ROOT, MOUNT, DATABASE, URI_PASSWORD } = process.env;
+const { ROOT, MOUNT, DATABASE, URI_PASSWORD, STATUS } = process.env;
 
 const ENV_VARIABLES = {
+	STATUS,
 	ROOT,
 	MOUNT,
 	DATABASE,

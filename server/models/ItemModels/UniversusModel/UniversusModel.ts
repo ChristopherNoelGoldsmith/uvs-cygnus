@@ -19,6 +19,7 @@ const stats = {
 	//Values must be 'high', 'mid', or 'low'
 	attackZone: {
 		type: String,
+		enum: ["high", "low", "mid"],
 		required: false,
 	},
 	speed: {
@@ -36,6 +37,7 @@ const stats = {
 	//Values must be 'high', 'mid', or 'low'
 	blockZone: {
 		type: String,
+		enum: ["high", "low", "mid"],
 		required: false,
 	},
 	control: {

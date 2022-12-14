@@ -1,7 +1,7 @@
 import { UniversusModel } from "./UniversusModel";
 import ItemsModel from "../ItemModel";
 import { checkZone } from "./checkZone";
-import AppError from "../../utilities/appError";
+import AppError from "../../../utilities/appError";
 
 const checkForProperZonesOnCards = () => {
 	return UniversusModel.pre("save", function (next): void {

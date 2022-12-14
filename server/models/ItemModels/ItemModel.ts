@@ -2,7 +2,7 @@
 SUMMARY )
 This is the schema used to design the items written to the database
 */
-import { convertParametersToRegExp } from "./ItemModelsUtils/PopulateFilterObject";
+import { convertParametersToRegExp } from "../ItemModelsUtils/PopulateFilterObject";
 import mongoose, { Schema } from "mongoose";
 import { ItemsDocument, ItemsModelInterface } from "./ItemModelInterfaces";
 //TODO: create a presave function that parses text and creates tags with regExp
@@ -43,6 +43,10 @@ export const BaseSchema = (
 			},
 			image: {
 				type: String,
+			},
+			cardType: {
+				type: String,
+				required: true,
 			},
 			keywords: {
 				type: [String],

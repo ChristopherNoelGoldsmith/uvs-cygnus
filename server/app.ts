@@ -9,6 +9,7 @@ import bodyParser from "body-parser";
 import ENV_VARIABLES from "./utilities/envVars";
 import staticRoutes from "./routes/staticRoutes";
 import itemsRoutes from "./routes/itemsRoutes";
+import decksRoutes from "./routes/decksRoutes";
 /* 
 ///////////////////////////////////////////////////
 
@@ -45,6 +46,7 @@ Initiating routes
 */
 app.use(staticRoutes);
 app.use("/api/v1/items", itemsRoutes);
+app.use("/api/v1/decks", decksRoutes);
 
 ///////////////////////////////////////////////////
 export default app;

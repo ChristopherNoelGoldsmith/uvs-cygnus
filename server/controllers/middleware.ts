@@ -1,7 +1,7 @@
 import { Schema } from "mongoose";
-import Universus from "../models/UniversusModel/UniversusModel";
+import Universus from "../models/ItemModels/UniversusModel/UniversusModel";
 import AppError from "../utilities/appError";
-import Items from "../models/ItemModel";
+import Items from "../models/ItemModels/ItemModel";
 
 export const checkCategoryAndReturnSchema = (category: string | null) => {
 	if (!category) category = "default";

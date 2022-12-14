@@ -9,6 +9,18 @@ export const getAllItems = catchAsyncFunction(async (req: any, res: any) => {
 });
 
 /*
+! NOTE ON QUERY PARAMS AND THEIR USE IN THIS PROJECT AND IN THESE CONTROLLERS
+Query params are basically used as full objects passed through the url
+
+In functions the Object.keys() method will be used to dissable them and repurpose the value as seen fit
+Primarily the value (which is typically a string) will be converted to to a regexp by middleware
+The other uses are categorization such as through the "category" value.
+
+Values like "category" will be deleted during the params processing to avoid causing an error in the query
+Look at "../models/ItemsModel.ts" for examples.
+*/
+
+/*
 ///////////////////////////////////////////////////////////////////////////
 Finding an item by id in the database
 */
@@ -49,6 +61,12 @@ export const getItemsByParam = catchAsyncFunction(
 	}
 );
 
+/*
+///////////////////////////////////////////////////////////////////////////
+Create an item in the database using query params
+
+*/
+
 export const createItem = catchAsyncFunction(async (req: any, res: any) => {
 	const { category } = req.query;
 	const { model } = checkCategoryAndReturnSchema(category);
@@ -81,6 +99,7 @@ export const patchItem = catchAsyncFunction(async (req: any, res: any) => {
 		return new AppError({ statusCode: 404, message: "Not found!" });
 	}
 
+	// Resolution
 	res.status(200).json({ statusCode: 200, message: `${data.name} | UPDATED!` });
 });
 
@@ -91,17 +110,17 @@ export const deleteItemById = catchAsyncFunction(async (req: any, res: any) => {
 
 	const deletion = await model.findByIdAndDelete({ _id: id });
 
+	//Error Handling ) Check if the delete attempt was valid
 	if (!deletion || deletion === null) {
-		console.log("poop");
-		new AppError({
-			statusCode: 400,
+		return new AppError({
+			statusCode: 404,
 			message: "This item was not found in the database",
 		});
-		("This item was not found in the database");
 	}
 
-	res.status(200).json({
-		statusCode: 200,
-		message: `${deletion!.name + " successfully deleted!"}`,
+	// Resolution
+	res.status(204).json({
+		statusCode: 204,
+		message: `${deletion.name + " successfully deleted!"}`,
 	});
 });

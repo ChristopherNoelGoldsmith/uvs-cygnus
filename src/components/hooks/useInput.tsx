@@ -40,7 +40,7 @@ const inputReducer = (
 
 const useInput = (
 	input: InputHandlerInterface,
-	conversionFunction: Function
+	conversionFunction?: Function
 ) => {
 	const [inputState, dispatchInput] = useReducer(inputReducer, input && {});
 
@@ -62,7 +62,8 @@ const useInput = (
 	A callback function is to be used upon calling the useInput hool which will be
 	applied to the state and returned once called.
 	------------------------------------------------------------------ */
-	const convertedValues = () => {
+	const convertedValues = (): InputHandlerInterface | void => {
+		if (!conversionFunction) return;
 		return stateConversion(inputState, conversionFunction);
 	};
 	return {

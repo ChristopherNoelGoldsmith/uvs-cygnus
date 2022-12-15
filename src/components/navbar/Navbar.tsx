@@ -30,10 +30,14 @@ const Navbar: React.FC = () => {
 
 	const querySearchHandler = async (event: any) => {
 		event.preventDefault();
-		const query = await queryApi("find", {
-			category: "universus",
-			name: inputState.name,
-		});
+		const query = await queryApi(
+			"find",
+			{
+				category: "universus",
+				name: inputState.name,
+			},
+			{ method: "GET" }
+		);
 		console.log(query);
 	};
 

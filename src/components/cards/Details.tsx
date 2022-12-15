@@ -1,8 +1,7 @@
 import React from "react";
 import { DUMMY_DATA } from "./../../assets/images.js";
-
 const getStats = () => {
-	const { stats } = DUMMY_DATA.endevor;
+	const stats: any = DUMMY_DATA.endevor.stats;
 	const result: React.ReactNode[] = [];
 	const keys: string[] = Object.keys(stats);
 	keys.forEach((key: string) => {

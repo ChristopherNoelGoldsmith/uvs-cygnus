@@ -6,13 +6,26 @@ CONTROLS THE STATE OF THE INPUT
 ///////////////////////////////
 */
 
-interface inputHandlerInterface {
-	[key: string]: string;
+interface InputHandlerInterface {
+	[key: string]: string | number | string[];
 }
 
+const stateConversion = (
+	obj: InputHandlerInterface,
+	conversionFunction: Function
+) => {
+	const keys: string[] = Object.keys(obj);
+	let list = {};
+	keys.forEach((objKey: string, index: number) => {
+		return (list = { ...list, [keys[index]]: conversionFunction(obj[objKey]) });
+	});
+	console.log(list);
+	return { ...list };
+};
+
 const inputReducer = (
-	state: inputHandlerInterface,
-	action: inputHandlerInterface
+	state: InputHandlerInterface,
+	action: InputHandlerInterface
 ) => {
 	const [keys] = Object.keys(action);
 
@@ -21,11 +34,14 @@ const inputReducer = (
 	} else {
 		state = { ...state, ...action };
 	}
-	console.log(state);
+	console.log(state, action);
 	return { ...state };
 };
 
-const useInput = (input: inputHandlerInterface) => {
+const useInput = (
+	input: InputHandlerInterface,
+	conversionFunction: Function
+) => {
 	const [inputState, dispatchInput] = useReducer(inputReducer, input && {});
 
 	/*--------------------------------------------------------------------
@@ -36,13 +52,23 @@ const useInput = (input: inputHandlerInterface) => {
     FOLLOW THE STANDARDS OF THE OTHER HANDLERS!
     */ //------------------------------------------------------------------
 
-	const inputHandler = (input: inputHandlerInterface): void => {
+	const inputHandler = (input: InputHandlerInterface): void => {
 		dispatchInput(input);
+		console.log(inputState);
 	};
 
+	/* ------------------------------------------------------------------
+	Convers the values in the inputState to conform to whatever values needed.
+	A callback function is to be used upon calling the useInput hool which will be
+	applied to the state and returned once called.
+	------------------------------------------------------------------ */
+	const convertedValues = () => {
+		return stateConversion(inputState, conversionFunction);
+	};
 	return {
 		inputState,
 		inputHandler,
+		convertedValues,
 	};
 };
 

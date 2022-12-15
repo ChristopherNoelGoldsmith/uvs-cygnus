@@ -13,6 +13,7 @@ const getMount = (key) => {
 
 	const mount = {
 		find: `${baseURL}/items/find`,
+		items: `${baseURL}/items`,
 	};
 	return mount[key];
 };
@@ -65,7 +66,8 @@ queryObject: KEY VALUE PAIRS FOR FIELDS OF THE URL
 		return newObject;
 	};
 
-	const createQueryObject = async (request, queryObject) => {
+	//TODO: Streamline headers
+	const createQueryObject = async (request, queryObject, options) => {
 		const queryAPI = async (string) => {
 			// URL CONTRUCTION 1 ) CREATES THE BASE FOR THE URL "https://finnhub.io/api/v1/";
 
@@ -73,16 +75,16 @@ queryObject: KEY VALUE PAIRS FOR FIELDS OF THE URL
 
 			//URL CONTRUSTION 2 ) ADDS THE FIELDS TO THE URL
 			const query = queryReducer(mount, queryObject);
-
+			console.log(options, query);
 			try {
-				const result = await fetch(query).then((res) => res.json());
-
+				const result = await fetch(query, options).then((res) => res.json());
 				//ERROR 1 ) BAD REQUESTS RETURN AN EMPTY OBJECT SO CHECKING FOR KEYS IS THE BEST WAY TO VERIFY ERRORS WITH INPUTS
 				//RETURNS FALSE UNDER THESE CIRCUMSTANCES.
 				if (Object.keys(result).length === 0) return false;
 
 				return result;
 			} catch (error) {
+				console.log(error);
 				return false;
 			}
 		};

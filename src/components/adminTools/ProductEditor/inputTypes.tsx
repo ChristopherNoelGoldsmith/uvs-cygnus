@@ -1,0 +1,15 @@
+export const inputList = {
+	game: "",
+	cardType: "",
+	name: "",
+	difficulty: "",
+	damage: 0,
+	attackZone: "",
+	blockZone: "",
+	speed: 0,
+	control: 0,
+	blockMod: 0,
+	origin: "",
+	attributes: "",
+	text: "",
+};

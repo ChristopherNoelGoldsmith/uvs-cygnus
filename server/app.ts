@@ -4,6 +4,7 @@ const path = require("path");
 const app = express();
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
+import cors from "cors";
 ///////////////////////////////////////////////////
 //IMPORTS
 import ENV_VARIABLES from "./utilities/envVars";
@@ -23,6 +24,7 @@ console.log(ROOT); //////////////////////////////////////////////////
 const URI: string = DATABASE!.replace("%PASSWORD%", URI_PASSWORD!);
 
 if (ENV_VARIABLES.STATUS === "dev") {
+	app.use(cors());
 	app.use((req: any, res: any, next: any) => {
 		res.header("Access-Control-Allow-Origin", "*");
 		next();

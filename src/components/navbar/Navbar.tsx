@@ -24,6 +24,7 @@ const Navbar: React.FC = () => {
 	};
 
 	const navbarInputHandler = (event: any): void => {
+		console.log(event);
 		inputHandler({ name: event.target.value });
 	};
 

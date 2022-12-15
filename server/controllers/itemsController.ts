@@ -68,8 +68,10 @@ Create an item in the database using query params
 */
 
 export const createItem = catchAsyncFunction(async (req: any, res: any) => {
+	console.log("hello");
 	const { category } = req.query;
 	const { model } = checkCategoryAndReturnSchema(category);
+	console.log(req.body);
 	//Item creation 1 ) Writing it to the database and runing the schema
 	const item = await model.create(req.body);
 

@@ -1,7 +1,7 @@
 import "./Navbar.scss";
 //HOOKS
 import React, { useState } from "react";
-import useInput from "../hooks/useInput";
+import useInput from "../hooks/useInput/useInput";
 //COMPONENTS
 import TypesSelector from "../selections/TypesSelector";
 import ProductSelector from "../selections/ProductSelector";

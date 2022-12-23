@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FormEvent } from "react";
 import useQuery from "../../hooks/useQuery";
-import useInput from "../../hooks/useInput";
+import useInput from "../../hooks/useInput/useInput";
 import populateInputForm from "./populateInputForm";
 import { inputList } from "./inputTypes";
+import FormComponent from "../../hooks/useInput/FormComponent";
 
 const convertStringToArrOnObject = (
 	str: string | number | string[]
@@ -20,7 +21,7 @@ const convertStringToArrOnObject = (
 };
 
 const ProductEditor: React.FC = () => {
-	const [formState, setFormState] = useState<React.ReactNode[]>();
+	const [formState, setFormState] = useState<React.ReactNode>(<div></div>);
 	const { inputState, inputHandler, convertedValues } = useInput(
 		{},
 		convertStringToArrOnObject
@@ -47,8 +48,7 @@ const ProductEditor: React.FC = () => {
 		console.log(request);
 	};
 
-	const inputFormHandler = (event: any) => {
-		console.log(event.target.name);
+	const inputFormHandler: React.ChangeEventHandler = (event: any) => {
 		inputHandler({ [event.target.name]: event.target.value });
 	};
 	useEffect(() => {
@@ -56,24 +56,30 @@ const ProductEditor: React.FC = () => {
 	}, []);
 
 	useEffect(() => {
-		const formList: React.ReactNode[] = populateInputForm(
+		const formList: React.ReactNode = populateInputForm(
 			inputState,
 			inputFormHandler
 		);
 		setFormState(formList);
 	}, [inputState]);
 
-	const submitForm = (event: any) => {
+	const submitForm: React.FormEventHandler = (event: FormEvent) => {
 		event.preventDefault();
 		postRequestToApi();
 	};
 
 	return (
 		<section className="flex column-xs bg-color-blue">
-			<form onSubmit={submitForm} className="bg-color-blue pad2 flex column-xs">
-				{formState}
-				<button type="submit">{"SUBMIT"}</button>
-			</form>
+			<FormComponent
+				onSubmit={submitForm}
+				className={["bg-color-blue", "pad2", "flex", "column-xs"]}
+			>
+				<section>
+					{formState}
+
+					<button type="submit">{"SUBMIT"}</button>
+				</section>
+			</FormComponent>
 		</section>
 	);
 };

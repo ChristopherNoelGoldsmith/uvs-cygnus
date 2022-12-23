@@ -1,8 +1,31 @@
 import React from "react";
+import SelectComponent, {
+	SelectComponentInterface,
+} from "../../hooks/useInput/SelectComponent";
+import { OptionComponentInterface } from "../../hooks/useInput/SelectComponent";
 
 interface InputFormInterface {
 	[key: string]: number | string | string[];
 }
+
+const createSelectorElement = (
+	arr: string[],
+	onChangeCallback: Function
+): SelectComponentInterface => {
+	const options: OptionComponentInterface[] = arr.map((str: string) => {
+		return { label: str, value: str, className: [""], id: str };
+	});
+
+	return (
+		<SelectComponent
+			optionsArray={options}
+			selectId={"attribte"}
+			selectClassName={["fake"]}
+			selectName={"attribute"}
+			onChange={onChangeCallback}
+		/>
+	);
+};
 
 const populateInputForm = (
 	inputObj: InputFormInterface,
@@ -30,7 +53,6 @@ const populateInputForm = (
 				value={inputObj[key]}
 			/>
 		);
-
 		const textareaElement = (
 			<textarea
 				name={key}
@@ -44,8 +66,16 @@ const populateInputForm = (
 			></textarea>
 		);
 
-		const inputType = key !== "text" ? inputElement : textareaElement;
+		let inputType;
 
+		if (
+			typeof inputObj[key] !== "string" &&
+			typeof inputObj[key] !== "number"
+		) {
+			inputType = createSelectorElement(inputObj[key], inputFormHandler);
+		} else {
+			inputType = key !== "text" ? inputElement : textareaElement;
+		}
 		return (
 			<figure className="flex bg-color-white fill-x space-between row-xs">
 				<label className="bg-color-white pad1 font f-center" htmlFor={key}>

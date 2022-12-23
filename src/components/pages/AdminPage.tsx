@@ -1,5 +1,7 @@
-import React from "react";
+import React, { ChangeEventHandler, ChangeEvent } from "react";
 import ProductEditor from "../adminTools/ProductEditor/ProductEditor";
+import FormComponent from "../hooks/useInput/FormComponent";
+import InputComponent from "../hooks/useInput/InputComponent";
 
 const AdminPage: React.FC = () => {
 	return (

@@ -10,6 +10,6 @@ export const inputList = {
 	control: 0,
 	blockMod: 0,
 	origin: "",
-	attributes: "",
+	attributes: ["Air", "Fire", "Water", "All"],
 	text: "",
 };

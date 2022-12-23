@@ -1,14 +1,10 @@
 import { useReducer } from "react";
-
+import { InputHandlerInterface } from "./interface-InputComponent";
 /*
 ///////////////////////////////
 CONTROLS THE STATE OF THE INPUT
 ///////////////////////////////
 */
-
-interface InputHandlerInterface {
-	[key: string]: string | number | string[];
-}
 
 const stateConversion = (
 	obj: InputHandlerInterface,

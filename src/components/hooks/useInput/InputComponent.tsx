@@ -11,6 +11,7 @@ const InputComponent = (props: InputComponentInterface) => {
 			value={props.value}
 			id={props.id}
 			key={props.key}
+			onChange={props.onChange}
 		/>
 	);
 };

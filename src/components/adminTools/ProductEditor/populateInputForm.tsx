@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEventHandler, ReactElement } from "react";
 import SelectComponent, {
 	SelectComponentInterface,
 } from "../../hooks/useInput/SelectComponent";
@@ -8,10 +8,10 @@ interface InputFormInterface {
 	[key: string]: number | string | string[];
 }
 
-const createSelectorElement = (
+export const createSelectorElement = (
 	arr: string[],
-	onChangeCallback: Function
-): SelectComponentInterface => {
+	onChangeCallback: ChangeEventHandler
+) => {
 	const options: OptionComponentInterface[] = arr.map((str: string) => {
 		return { label: str, value: str, className: [""], id: str };
 	});
@@ -19,7 +19,7 @@ const createSelectorElement = (
 	return (
 		<SelectComponent
 			optionsArray={options}
-			selectId={"attribte"}
+			selectId={"attribute"}
 			selectClassName={["fake"]}
 			selectName={"attribute"}
 			onChange={onChangeCallback}
@@ -69,8 +69,8 @@ const populateInputForm = (
 		let inputType;
 
 		if (
-			typeof inputObj[key] !== "string" &&
-			typeof inputObj[key] !== "number"
+			typeof inputObj[key] === "string" &&
+			typeof inputObj[key] === "number"
 		) {
 			inputType = createSelectorElement(inputObj[key], inputFormHandler);
 		} else {

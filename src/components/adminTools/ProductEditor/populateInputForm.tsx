@@ -1,4 +1,5 @@
 import React, { ChangeEventHandler, ReactElement } from "react";
+import util from "util";
 import SelectComponent, {
 	SelectComponentInterface,
 } from "../../hooks/useInput/SelectComponent";
@@ -13,7 +14,13 @@ export const createSelectorElement = (
 	onChangeCallback: ChangeEventHandler
 ) => {
 	const options: OptionComponentInterface[] = arr.map((str: string) => {
-		return { label: str, value: str, className: [""], id: str };
+		return {
+			label: str,
+			value: str,
+			className: [""],
+			id: str,
+			key: Math.random() * 5000,
+		};
 	});
 
 	return (
@@ -23,6 +30,7 @@ export const createSelectorElement = (
 			selectClassName={["fake"]}
 			selectName={"attribute"}
 			onChange={onChangeCallback}
+			key={5000}
 		/>
 	);
 };

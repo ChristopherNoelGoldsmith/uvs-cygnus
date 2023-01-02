@@ -5,6 +5,7 @@ export interface OptionComponentInterface {
 	label: string;
 	value: string;
 	className: string[];
+	key: number;
 }
 
 export interface SelectComponentInterface {
@@ -13,6 +14,7 @@ export interface SelectComponentInterface {
 	selectClassName: string[];
 	onChange: ChangeEventHandler;
 	optionsArray: OptionComponentInterface[];
+	key: number;
 }
 
 const SelectComponent = (props: SelectComponentInterface) => {
@@ -23,6 +25,7 @@ const SelectComponent = (props: SelectComponentInterface) => {
 					value={opt.value}
 					className={opt.className.join(" ")}
 					id={opt.id}
+					key={opt.key}
 				>
 					{opt.label.toUpperCase()}
 				</option>
@@ -37,6 +40,7 @@ const SelectComponent = (props: SelectComponentInterface) => {
 			name={props.selectName}
 			id={props.selectId}
 			onChange={props.onChange}
+			key={Math.random() * 500}
 		>
 			{options}
 		</select>

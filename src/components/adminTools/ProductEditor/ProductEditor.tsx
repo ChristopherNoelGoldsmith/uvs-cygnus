@@ -21,7 +21,7 @@ const convertStringToArrOnObject = (
 };
 
 const ProductEditor: React.FC = () => {
-	const [formState, setFormState] = useState<React.ReactNode>(<div></div>);
+	const [formState, setFormState] = useState<React.ReactNode>();
 	const { inputState, inputHandler, convertedValues } = useInput(
 		{},
 		convertStringToArrOnObject
@@ -61,7 +61,7 @@ const ProductEditor: React.FC = () => {
 			inputFormHandler
 		);
 		setFormState(formList);
-	}, [inputState]);
+	}, [Object.keys(inputState).length]);
 
 	const submitForm: React.FormEventHandler = (event: FormEvent) => {
 		event.preventDefault();

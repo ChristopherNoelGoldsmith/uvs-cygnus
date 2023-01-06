@@ -1,13 +1,12 @@
 import { Model } from "mongoose";
 
 export interface ItemStats {
-	[key: string]: string | number;
+	[key: string]: { [key: string]: any };
 }
 
 export interface ItemsDocument extends Document {
 	name: string;
 	text: string;
-	stats: ItemStats;
 	origin: string;
 	attributes: string[];
 	game: string;

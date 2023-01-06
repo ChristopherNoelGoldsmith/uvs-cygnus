@@ -15,7 +15,8 @@ import { InputHandlerInterface } from "./interface-InputComponent";
 // };
 
 test("useInput: 2 strings added to use input state", () => {
-	renderHook(() => useState(null));
+	const hook = renderHook(() => useState(null));
+	console.log(hook);
 
 	//	inputHandler({ fart: "stinks", fire: "hot" });
 });

@@ -31,6 +31,10 @@
 	opacity: 0.4;
 }
 
+.bg-transparent {
+	background-color: rgba($color: white, $alpha: 0);
+}
+
 .bg-grad-black {
 	@include gsm.horizontal-gradient(black);
 	@include gsm.md {

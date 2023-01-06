@@ -2,13 +2,15 @@ import React from "react";
 
 export interface InputComponentInterface {
 	type?: string;
-	className: string[];
+	className?: string[];
 	placeholder?: string;
-	value: number | string;
+	value?: number | string;
 	id?: string;
+	inputName?: string;
 	key: string;
 	middleware?: Function;
-	onChange: React.ChangeEventHandler;
+	readOnly?: boolean;
+	onChange?: React.ChangeEventHandler;
 }
 
 export interface InputHandlerInterface {

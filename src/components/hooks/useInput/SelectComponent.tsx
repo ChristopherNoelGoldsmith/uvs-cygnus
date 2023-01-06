@@ -12,7 +12,7 @@ export interface SelectComponentInterface {
 	selectName: string;
 	selectId: string;
 	selectClassName: string[];
-	onChange: ChangeEventHandler;
+	//onChange: ChangeEventHandler;
 	optionsArray: OptionComponentInterface[];
 	key: number;
 }
@@ -39,7 +39,7 @@ const SelectComponent = (props: SelectComponentInterface) => {
 		<select
 			name={props.selectName}
 			id={props.selectId}
-			onChange={props.onChange}
+			//onChange={props.onChange}
 			key={Math.random() * 500}
 		>
 			{options}

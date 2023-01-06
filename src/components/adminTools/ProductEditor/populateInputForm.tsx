@@ -1,11 +1,9 @@
-import React, { ChangeEventHandler, ReactElement } from "react";
-import util from "util";
-import SelectComponent, {
-	SelectComponentInterface,
-} from "../../hooks/useInput/SelectComponent";
+import React, { ChangeEventHandler } from "react";
 import { OptionComponentInterface } from "../../hooks/useInput/SelectComponent";
+import SelectComponentMulti from "../../hooks/useInput/SelectComponentsMulti";
+import InputComponent from "../../hooks/useInput/InputComponent";
 
-interface InputFormInterface {
+export interface InputFormInterface {
 	[key: string]: number | string | string[];
 }
 
@@ -24,7 +22,7 @@ export const createSelectorElement = (
 	});
 
 	return (
-		<SelectComponent
+		<SelectComponentMulti
 			optionsArray={options}
 			selectId={"attribute"}
 			selectClassName={["fake"]}
@@ -49,16 +47,16 @@ const populateInputForm = (
 			return name.join("");
 		};
 		const labelName = makeLabelName(key);
-
+		console.log(typeof inputObj[key]);
 		const inputElement = (
-			<input
+			<InputComponent
 				id={key}
-				className="font f-center pad1"
+				className={["font", "f-center", "pad1"]}
 				type={inputObj[key] !== typeof "number" ? "text" : "number"}
 				placeholder={key.toUpperCase()}
-				name={key}
+				inputName={key}
 				onChange={inputFormHandler}
-				value={inputObj[key]}
+				key={`${Math.random() * 1000000}`}
 			/>
 		);
 		const textareaElement = (
@@ -70,22 +68,25 @@ const populateInputForm = (
 				placeholder={key.toUpperCase()}
 				className="font f-left pad1"
 				onChange={inputFormHandler}
-				value={inputObj[key]}
+				key={Math.random() * 1000000}
 			></textarea>
 		);
 
 		let inputType;
 
 		if (
-			typeof inputObj[key] === "string" &&
-			typeof inputObj[key] === "number"
+			typeof inputObj[key] !== "string" &&
+			typeof inputObj[key] !== "number"
 		) {
 			inputType = createSelectorElement(inputObj[key], inputFormHandler);
 		} else {
 			inputType = key !== "text" ? inputElement : textareaElement;
 		}
 		return (
-			<figure className="flex bg-color-white fill-x space-between row-xs">
+			<figure
+				key={Math.random() * 1000000}
+				className="flex bg-color-white fill-x space-between row-xs"
+			>
 				<label className="bg-color-white pad1 font f-center" htmlFor={key}>
 					{labelName}
 				</label>

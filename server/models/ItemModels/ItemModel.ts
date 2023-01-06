@@ -4,14 +4,18 @@ This is the schema used to design the items written to the database
 */
 import { convertParametersToRegExp } from "../ItemModelsUtils/PopulateFilterObject";
 import mongoose, { Schema } from "mongoose";
-import { ItemsDocument, ItemsModelInterface } from "./ItemModelInterfaces";
+import {
+	ItemsDocument,
+	ItemsModelInterface,
+	ItemStats,
+} from "./ItemModelInterfaces";
 //TODO: create a presave function that parses text and creates tags with regExp
 //? @keywords: used for things like "powerful in ufs" or "flying" in mtg
 
 export const BaseSchema = (
 	schemaName: string,
 	collection: string,
-	stats: Object = {}
+	stats: ItemStats = {}
 ): Schema => {
 	return new Schema(
 		{
@@ -62,9 +66,7 @@ export const BaseSchema = (
 				/*
 	///////////////////////////////////////////////////////////////////////////
 		Finding items in database using query params
-	
-		TODO: create if statements to drill into objects "ex - stats{damage: 5, speed: 4};""
-	*/
+		*/
 
 				findItemByParam(parameters: any) {
 					//! A Workaround to remove a conflict with the search function

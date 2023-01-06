@@ -1,12 +1,15 @@
 import React from "react";
 import "@testing-library/jest-dom";
-import { createSelectorElement } from "./populateInputForm";
+import populateInputForm, {
+	createSelectorElement,
+	InputFormInterface,
+} from "./populateInputForm";
 import { render, fireEvent, screen } from "@testing-library/react";
 import { expect, test } from "@jest/globals";
 
 //Test for text in a string or array of values on screen
 type middlewareType = (str: string | number) => string | number;
-const testForTextOnTheScreen = async (
+export const testForTextOnTheScreen = async (
 	text: string[] | string | number | number[],
 	middleware?: middlewareType
 ) => {
@@ -31,13 +34,26 @@ const testForTextOnTheScreen = async (
 
 test("Expect select JSX component with options children with specific text.", async () => {
 	const testArray: string[] = ["Air", "Fire", "Water"];
-	const testFn = () => console.log("hello");
-	const theTest = createSelectorElement(testArray, testFn);
+	const theTest = createSelectorElement(testArray, () => console.log("test"));
 	render(theTest);
-	const makeUppercase = (string: string) => {
-		return string.toUpperCase();
+	const makeUppercase = (str: string | number): string | number => {
+		//!workaround fix this!
+		if (typeof str === "string") return str.toUpperCase();
+		return 0;
 	};
-	const result = await testForTextOnTheScreen(testArray);
+	const result = await testForTextOnTheScreen(testArray, makeUppercase);
 
-	expect(result).toBe(true);
+	expect(result).toBeTruthy();
+});
+
+test("Expect form with series of inputs", async () => {
+	const testData: InputFormInterface = { test: "testing text", test2: 2 };
+	const theTest: React.ReactElement = (
+		<div key={Math.random() * 1000000}>
+			{populateInputForm(testData, () => console.log("fart"))}
+		</div>
+	);
+	render(theTest);
+	const result = await testForTextOnTheScreen("Test");
+	expect(result).toBeTruthy();
 });
